@@ -1,15 +1,18 @@
-import { useState } from 'react'
 import './App.css'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Benefits from './components/Benefits'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    
-    <div>
-      <h1>Vienvenidos a Briva</h1>
-      <p>Estamos contruyendo nuestra app en react.</p>
-    </div>
+    <>
+      <Header />
+
+      <main>
+        <Hero />
+        <Benefits />
+      </main>
+    </>
   )
 }
 
