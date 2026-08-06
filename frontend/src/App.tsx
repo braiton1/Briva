@@ -2,6 +2,7 @@ import './App.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Benefits from './components/Benefits'
+import Process from './components/Process'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <main>
         <Hero />
         <Benefits />
+        <Process />
       </main>
     </>
   )
