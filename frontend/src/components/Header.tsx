@@ -1,16 +1,50 @@
+import { useState } from 'react'
+
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  function closeMenu() {
+    setMenuOpen(false)
+  }
+
   return (
     <header>
-      <div>
-        <a href="/">Briva</a>
+      <div className="header__container">
+        <a className="header__logo" href="/" onClick={closeMenu}>
+          Briva
+        </a>
 
-        <nav>
-          <a href="#servicios">Servicios</a>
-          <a href="#proceso">Cómo trabajamos</a>
-          <a href="#contacto">Contacto</a>
+        <button
+          className="header__menu-button"
+          type="button"
+          aria-label="Abrir o cerrar menú"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? '×' : '☰'}
+        </button>
+
+        <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
+          <a href="#servicios" onClick={closeMenu}>
+            Servicios
+          </a>
+
+          <a href="#proceso" onClick={closeMenu}>
+            Cómo trabajamos
+          </a>
+
+          <a href="#contacto" onClick={closeMenu}>
+            Contacto
+          </a>
+
+          <a
+            className="header__button"
+            href="#contacto"
+            onClick={closeMenu}
+          >
+            Solicitar presupuesto
+          </a>
         </nav>
-
-        <a href="#contacto">Solicitar presupuesto</a>
       </div>
     </header>
   )
