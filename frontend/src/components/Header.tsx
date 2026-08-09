@@ -29,6 +29,10 @@ function Header() {
             Servicios
           </a>
 
+          <a href="#proyectos" onClick={closeMenu}>
+            Proyectos
+          </a>
+
           <a href="#proceso" onClick={closeMenu}>
             Cómo trabajamos
           </a>

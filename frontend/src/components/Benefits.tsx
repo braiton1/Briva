@@ -1,18 +1,18 @@
 const benefits = [
   {
-    title: 'Diseño adaptable',
+    title: 'Experiencia para tus clientes',
     description:
-      'Tu sitio se verá correctamente en computadoras, tablets y celulares.',
+      'Una presencia clara, profesional y preparada para cualquier pantalla.',
   },
   {
-    title: 'Contacto directo',
+    title: 'Gestión simple',
     description:
-      'Facilitamos que tus clientes puedan comunicarse con vos por WhatsApp.',
+      'Herramientas que tu equipo puede usar sin depender del código.',
   },
   {
-    title: 'Rápido y confiable',
+    title: 'Procesos conectados',
     description:
-      'Construimos experiencias ágiles que transmiten profesionalismo.',
+      'Conectamos información para evitar tareas duplicadas y desorden.',
   },
   {
     title: 'Preparado para crecer',
@@ -28,8 +28,8 @@ function Benefits() {
         <span>Una presencia digital completa</span>
         <h2>Más que una página bonita.</h2>
         <p>
-          Cada decisión está pensada para facilitar el contacto con tus clientes
-          y fortalecer la presencia de tu negocio.
+          Diseñamos tanto la presencia pública como las herramientas internas
+          que ayudan a organizar el trabajo cotidiano.
         </p>
       </div>
 

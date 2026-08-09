@@ -1,23 +1,23 @@
 const services = [
   {
-    title: 'Landing pages',
+    title: 'Sitios y landing pages',
     description:
-      'Páginas enfocadas en presentar una propuesta clara y generar consultas.',
+      'Experiencias públicas para presentar tu propuesta y generar oportunidades.',
   },
   {
-    title: 'Sitios web',
+    title: 'Paneles de gestión',
     description:
-      'Sitios profesionales para comunicar tu negocio, servicios e identidad.',
+      'Herramientas privadas para administrar clientes, turnos, productos o stock.',
   },
   {
-    title: 'Tiendas online',
+    title: 'Ventas online',
     description:
-      'Experiencias de compra simples, rápidas y adaptadas a cualquier pantalla.',
+      'Catálogos y experiencias de compra conectadas con la operación del negocio.',
   },
   {
     title: 'Automatizaciones',
     description:
-      'Herramientas que reducen tareas repetitivas y mejoran la atención al cliente.',
+      'Integraciones que reducen tareas repetitivas y mantienen la información ordenada.',
   },
 ]
 

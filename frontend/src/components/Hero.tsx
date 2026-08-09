@@ -6,11 +6,11 @@ function Hero() {
           Tecnología para pequeños negocios
         </span>
 
-        <h1>La presencia digital que tu negocio necesita para crecer.</h1>
+        <h1>Tu negocio, conectado por dentro y por fuera.</h1>
 
         <p>
-          Diseñamos experiencias digitales modernas para que tu negocio inspire
-          confianza, consiga más clientes y siga creciendo.
+          Creamos la experiencia que ven tus clientes y las herramientas que tu
+          equipo necesita para trabajar mejor, sin tocar código.
         </p>
 
         <a className="hero__button" href="#contacto">

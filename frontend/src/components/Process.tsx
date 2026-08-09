@@ -1,28 +1,28 @@
 const steps = [
   {
     number: '01',
-    title: 'Reunión',
-    description: 'Conocemos tu negocio, tus objetivos y lo que necesitás.',
+    title: 'Entender',
+    description: 'Conocemos tu negocio, tus clientes y cómo trabaja tu equipo.',
   },
   {
     number: '02',
-    title: 'Diseño',
-    description: 'Definimos la estructura y la identidad visual del proyecto.',
+    title: 'Priorizar',
+    description: 'Elegimos qué problema conviene resolver primero.',
   },
   {
     number: '03',
     title: 'Desarrollo',
-    description: 'Convertimos el diseño en una experiencia digital funcional.',
+    description: 'Construimos una solución clara, fácil de usar y adaptable.',
   },
   {
     number: '04',
-    title: 'Publicación',
-    description: 'Preparamos y publicamos el proyecto para tus clientes.',
+    title: 'Implementación',
+    description: 'La ponemos en funcionamiento con tu información y procesos.',
   },
   {
     number: '05',
     title: 'Soporte',
-    description: 'Te acompañamos después de la publicación.',
+    description: 'Te acompañamos, medimos resultados y mejoramos la solución.',
   },
 ]
 

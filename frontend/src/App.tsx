@@ -6,6 +6,8 @@ import Process from './components/Process'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Services from './components/Services'
+import BusinessSystem from './components/BusinessSystem'
+import Portfolio from './components/Portfolio'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Hero />
         <Benefits />
         <Services />
+        <BusinessSystem />
+        <Portfolio />
         <Process />
         <Contact />
       </main>

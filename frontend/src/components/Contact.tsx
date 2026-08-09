@@ -106,11 +106,11 @@ function Contact() {
             <div className="contact__content">
                 <span>Hablemos de tu proyecto</span>
 
-                <h2>Construyamos una presencia digital que represente tu negocio.</h2>
+        <h2>Construyamos una solución digital que represente y organice tu negocio.</h2>
 
                 <p>
-                    Contanos qué necesitás. Vamos a escucharte, entender tu proyecto y
-                    proponerte una solución clara.
+          Contanos qué necesitás. Vamos a entender cómo funciona tu negocio y
+          proponerte una solución clara, útil y fácil de manejar.
                 </p>
             </div>
 

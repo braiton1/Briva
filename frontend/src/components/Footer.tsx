@@ -8,11 +8,12 @@ function Footer() {
             Briva
           </a>
 
-          <p>Presencia digital profesional para negocios que quieren avanzar.</p>
+          <p>Experiencias digitales y herramientas de gestión para negocios que quieren avanzar.</p>
         </div>
 
         <nav className="footer__nav" aria-label="Navegación del pie de página">
           <a href="#servicios">Servicios</a>
+          <a href="#proyectos">Proyectos</a>
           <a href="#proceso">Cómo trabajamos</a>
           <a href="#contacto">Contacto</a>
         </nav>
