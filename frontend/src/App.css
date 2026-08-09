@@ -456,10 +456,49 @@ section {
   cursor: pointer;
 }
 
-.contact__form button:hover {
+.contact__form button:not(:disabled):hover {
   background-color: #f5f3ff;
 }
+.contact__form button:disabled {
+  color: #4c3f91;
+  background-color: #ede9fe;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
 
+.contact__success {
+  margin: 0;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  background-color: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 10px;
+}
+
+.contact__form input[aria-invalid="true"],
+.contact__form textarea[aria-invalid="true"] {
+  color: #7f1d1d;
+  background-color: #fff7f7;
+  border-color: #fca5a5;
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 20%);
+}
+
+.contact__error {
+  display: block;
+  color: #fee2e2;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.contact__counter {
+  color: #ddd6fe;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+}
 /* NOTEBOOK Y CELULAR */
 
 .device {
