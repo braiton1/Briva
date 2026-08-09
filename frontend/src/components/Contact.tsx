@@ -18,6 +18,7 @@ function Contact() {
     const [errors, setErrors] = useState<FormErrors>({})
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitError, setSubmitError] = useState('')
 
     function handleChange(
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -35,7 +36,13 @@ function Contact() {
         }))
 
         setIsSubmitted(false)
+        setSubmitError('')
     }
+    const whatsappMessage = encodeURIComponent(
+        `Hola, soy ${formData.name}. Acabo de enviar una solicitud desde la web de Briva y me gustaría continuar por WhatsApp.`,
+    )
+
+    const whatsappUrl = `https://wa.me/5491141972952?text=${whatsappMessage}`
 
     function validateForm() {
         const newErrors: FormErrors = {}
@@ -68,11 +75,30 @@ function Contact() {
         }
 
         setIsSubmitting(true)
+        setSubmitError('')
 
-        await new Promise((resolve) => setTimeout(resolve, 1000))
+        try {
+            const response = await fetch('https://formspree.io/f/xoeajbwe', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
 
-        setIsSubmitting(false)
-        setIsSubmitted(true)
+            if (!response.ok) {
+                throw new Error('No se pudo enviar el formulario')
+            }
+
+            setIsSubmitted(true)
+        } catch {
+            setSubmitError(
+                'No pudimos enviar tu solicitud. Intentá nuevamente en unos minutos.',
+            )
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -142,7 +168,7 @@ function Contact() {
                     <span className="contact__counter">
                         {formData.message.length}/500 caracteres
                     </span>
-                    
+
                     {errors.message && (
                         <span className="contact__error" id="message-error">
                             {errors.message}
@@ -162,8 +188,24 @@ function Contact() {
                 </button>
 
                 {isSubmitted && (
-                    <p className="contact__success" role="status">
-                        Gracias. Recibimos los datos de tu proyecto.
+                    <div className="contact__success-actions">
+                        <p className="contact__success" role="status">
+                            Gracias. Recibimos los datos de tu proyecto.
+                        </p>
+
+                        <a
+                            className="contact__whatsapp"
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Continuar por WhatsApp
+                        </a>
+                    </div>
+                )}
+                {submitError && (
+                    <p className="contact__submit-error" role="alert">
+                        {submitError}
                     </p>
                 )}
             </form>
