@@ -63,7 +63,25 @@ database.exec(`
     registered_by INTEGER NOT NULL REFERENCES users(id),
     receipt_number TEXT NOT NULL UNIQUE
   ) STRICT;
+  CREATE TABLE IF NOT EXISTS gym_attendance (
+    id INTEGER PRIMARY KEY,
+    tenant_id INTEGER NOT NULL REFERENCES tenants(id),
+    member_id INTEGER NOT NULL REFERENCES gym_members(id),
+    attended_at TEXT NOT NULL,
+    registered_by INTEGER NOT NULL REFERENCES users(id),
+    UNIQUE (tenant_id, member_id, attended_at)
+  ) STRICT;
 `)
+
+function ensureColumn(table, column, definition) {
+  const columns = database.prepare(`PRAGMA table_info(${table})`).all()
+  if (!columns.some((item) => item.name === column)) database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`)
+}
+
+ensureColumn('gym_members', 'email', "TEXT NOT NULL DEFAULT ''")
+ensureColumn('gym_members', 'phone', "TEXT NOT NULL DEFAULT ''")
+ensureColumn('gym_members', 'membership_state', "TEXT NOT NULL DEFAULT 'Activa' CHECK (membership_state IN ('Activa', 'Suspendida'))")
+ensureColumn('gym_members', 'joined_at', "TEXT NOT NULL DEFAULT '2026-08-01'")
 
 function passwordRecord(password) {
   const salt = randomBytes(16)
@@ -165,7 +183,7 @@ function sessionPayload(session) {
 
 function dashboardFor(session) {
   if (session.businessType === 'gym') {
-    const members = database.prepare('SELECT id, name, plan, payment_status AS paymentStatus, next_payment AS nextPayment FROM gym_members WHERE tenant_id = ? ORDER BY id DESC').all(session.tenantId)
+    const members = database.prepare('SELECT id, name, email, phone, plan, payment_status AS paymentStatus, next_payment AS nextPayment, membership_state AS membershipState FROM gym_members WHERE tenant_id = ? ORDER BY id DESC').all(session.tenantId)
     const classes = database.prepare('SELECT id, time, name, booked, capacity FROM gym_classes WHERE tenant_id = ? ORDER BY time').all(session.tenantId)
     const recentPayments = database.prepare(`
       SELECT gym_payments.id, gym_payments.amount, gym_payments.method, gym_payments.paid_at AS paidAt,
@@ -243,6 +261,50 @@ async function handleApi(request, response) {
       if (cleanName.length < 3 || !['Inicial', 'Completo', 'Personalizado'].includes(cleanPlan) || !cleanDate) return json(response, 400, { error: 'Completá correctamente los datos del socio.' })
       const result = database.prepare('INSERT INTO gym_members (tenant_id, name, plan, payment_status, next_payment) VALUES (?, ?, ?, ?, ?)').run(session.tenantId, cleanName, cleanPlan, 'Por vencer', cleanDate)
       return json(response, 201, { id: Number(result.lastInsertRowid), ok: true })
+    }
+
+    const memberDetailMatch = request.url?.match(/^\/api\/gym\/members\/(\d+)$/)
+    if (memberDetailMatch && request.method === 'GET') {
+      const memberId = Number(memberDetailMatch[1])
+      const member = database.prepare(`SELECT id, name, email, phone, plan, payment_status AS paymentStatus, next_payment AS nextPayment, membership_state AS membershipState, joined_at AS joinedAt FROM gym_members WHERE id = ? AND tenant_id = ?`).get(memberId, session.tenantId)
+      if (!member) return json(response, 404, { error: 'Socio no encontrado.' })
+      const payments = database.prepare(`SELECT amount, method, paid_at AS paidAt, next_payment AS nextPayment, receipt_number AS receiptNumber FROM gym_payments WHERE member_id = ? AND tenant_id = ? ORDER BY id DESC`).all(memberId, session.tenantId)
+      const attendance = database.prepare(`SELECT gym_attendance.id, gym_attendance.attended_at AS attendedAt, users.name AS registeredBy FROM gym_attendance JOIN users ON users.id = gym_attendance.registered_by WHERE gym_attendance.member_id = ? AND gym_attendance.tenant_id = ? ORDER BY gym_attendance.id DESC LIMIT 20`).all(memberId, session.tenantId)
+      return json(response, 200, { member, payments, attendance })
+    }
+
+    if (memberDetailMatch && request.method === 'PATCH') {
+      const memberId = Number(memberDetailMatch[1])
+      const { name = '', email = '', phone = '', plan = '' } = await readBody(request)
+      const cleanName = String(name).trim()
+      const cleanEmail = String(email).trim()
+      const cleanPhone = String(phone).trim()
+      const cleanPlan = String(plan).trim()
+      if (cleanName.length < 3 || !['Inicial', 'Completo', 'Personalizado'].includes(cleanPlan)) return json(response, 400, { error: 'Revisá el nombre y el plan.' })
+      const result = database.prepare('UPDATE gym_members SET name = ?, email = ?, phone = ?, plan = ? WHERE id = ? AND tenant_id = ?').run(cleanName, cleanEmail, cleanPhone, cleanPlan, memberId, session.tenantId)
+      if (result.changes === 0) return json(response, 404, { error: 'Socio no encontrado.' })
+      return json(response, 200, { ok: true })
+    }
+
+    const memberStateMatch = request.url?.match(/^\/api\/gym\/members\/(\d+)\/state$/)
+    if (memberStateMatch && request.method === 'POST') {
+      const memberId = Number(memberStateMatch[1])
+      const { state = '' } = await readBody(request)
+      if (!['Activa', 'Suspendida'].includes(state)) return json(response, 400, { error: 'Estado de membresía no válido.' })
+      const result = database.prepare('UPDATE gym_members SET membership_state = ? WHERE id = ? AND tenant_id = ?').run(state, memberId, session.tenantId)
+      if (result.changes === 0) return json(response, 404, { error: 'Socio no encontrado.' })
+      return json(response, 200, { ok: true })
+    }
+
+    const memberAttendanceMatch = request.url?.match(/^\/api\/gym\/members\/(\d+)\/attendance$/)
+    if (memberAttendanceMatch && request.method === 'POST') {
+      const memberId = Number(memberAttendanceMatch[1])
+      const member = database.prepare('SELECT id, membership_state FROM gym_members WHERE id = ? AND tenant_id = ?').get(memberId, session.tenantId)
+      if (!member) return json(response, 404, { error: 'Socio no encontrado.' })
+      if (member.membership_state === 'Suspendida') return json(response, 409, { error: 'La membresía está suspendida.' })
+      const attendedAt = new Date().toISOString()
+      database.prepare('INSERT INTO gym_attendance (tenant_id, member_id, attended_at, registered_by) VALUES (?, ?, ?, ?)').run(session.tenantId, memberId, attendedAt, session.userId)
+      return json(response, 201, { ok: true, attendedAt })
     }
 
     const memberPaymentMatch = request.url?.match(/^\/api\/gym\/members\/(\d+)\/payment$/)

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
+import { MemberDirectory, MemberProfile } from './modules/members'
+import type { Member, MemberDetail, MembershipState, MemberUpdate } from './modules/members'
+import { money } from './shared/formatters'
 
 type Session = {
   user: { name: string; email: string; role: 'owner' | 'reception' | 'sales' }
@@ -8,7 +11,7 @@ type Session = {
 
 type GymDashboard = {
   kind: 'gym'
-  members: Array<{ id: number; name: string; plan: string; paymentStatus: string; nextPayment: string }>
+  members: Member[]
   classes: Array<{ id: number; time: string; name: string; booked: number; capacity: number }>
   recentPayments: Array<{ id: number; amount: number; method: string; paidAt: string; nextPayment: string; receiptNumber: string; memberName: string; registeredBy: string }>
   alerts: { overduePayments: number; nearlyFullClasses: number }
@@ -29,7 +32,6 @@ const demoAccounts = [
   { label: 'Dueño de Moto Central', email: 'owner@motocentral.demo', password: 'MotosDemo2026!' },
 ]
 
-const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 })
 const planPrices: Record<string, number> = { Inicial: 49000, Completo: 69000, Personalizado: 79000 }
 
 function suggestedPaymentDate() {
@@ -156,11 +158,12 @@ function GymWorkspace({ dashboard, role, onRefresh }: { dashboard: GymDashboard;
   const [nextPayment, setNextPayment] = useState(suggestedPaymentDate)
   const [actionError, setActionError] = useState('')
   const [saving, setSaving] = useState(false)
-  const [paymentMember, setPaymentMember] = useState<GymDashboard['members'][number] | null>(null)
+  const [paymentMember, setPaymentMember] = useState<Member | null>(null)
   const [paymentAmount, setPaymentAmount] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('Transferencia')
   const [lastReceipt, setLastReceipt] = useState('')
-
+  const [memberDetail, setMemberDetail] = useState<MemberDetail | null>(null)
+  const [profileLoading, setProfileLoading] = useState(false)
   async function createMember(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setSaving(true)
@@ -178,7 +181,7 @@ function GymWorkspace({ dashboard, role, onRefresh }: { dashboard: GymDashboard;
     }
   }
 
-  function openPayment(member: GymDashboard['members'][number]) {
+  function openPayment(member: Member) {
     setPaymentMember(member)
     setPaymentAmount(String(planPrices[member.plan] ?? 0))
     setLastReceipt('')
@@ -212,16 +215,50 @@ function GymWorkspace({ dashboard, role, onRefresh }: { dashboard: GymDashboard;
     }
   }
 
+  async function openProfile(memberId: number) {
+    setProfileLoading(true)
+    setActionError('')
+    try {
+      setMemberDetail(await api<MemberDetail>(`/api/gym/members/${memberId}`))
+    } catch (reason) {
+      setActionError(reason instanceof Error ? reason.message : 'No se pudo abrir la ficha.')
+    } finally {
+      setProfileLoading(false)
+    }
+  }
+
+  async function reloadProfile(memberId: number) {
+    const [detail] = await Promise.all([api<MemberDetail>(`/api/gym/members/${memberId}`), onRefresh()])
+    setMemberDetail(detail)
+  }
+
+  async function updateMember(memberId: number, values: MemberUpdate) {
+    await api(`/api/gym/members/${memberId}`, { method: 'PATCH', body: JSON.stringify(values) })
+    await reloadProfile(memberId)
+  }
+
+  async function changeMemberState(memberId: number, state: MembershipState) {
+    await api(`/api/gym/members/${memberId}/state`, { method: 'POST', body: JSON.stringify({ state }) })
+    await reloadProfile(memberId)
+  }
+
+  async function registerAttendance(memberId: number) {
+    await api(`/api/gym/members/${memberId}/attendance`, { method: 'POST' })
+    await reloadProfile(memberId)
+  }
+
   return (
     <>
       <section className="alerts" id="resumen"><article><b>{dashboard.alerts.overduePayments}</b><span>pagos vencidos</span></article><article><b>{dashboard.alerts.nearlyFullClasses}</b><span>clases casi completas</span></article><article><b>9</b><span>recordatorios pendientes</span></article></section>
       {role === 'owner' && dashboard.ownerMetrics && <section className="metrics" id="metricas"><article><span>Socios activos</span><strong>{dashboard.ownerMetrics.activeMembers}</strong><small>+12 este mes</small></article><article><span>Ingresos mensuales</span><strong>{money.format(dashboard.ownerMetrics.monthlyRevenue)}</strong><small>+8% frente a julio</small></article><article><span>Renovación</span><strong>{dashboard.ownerMetrics.retention}%</strong><small>4 puntos más</small></article><article><span>Ocupación</span><strong>{dashboard.ownerMetrics.occupancy}%</strong><small>Promedio de clases</small></article></section>}
       {role === 'reception' && <div className="permission-note">Vista de recepción: los datos financieros y las estadísticas del negocio están ocultos.</div>}
       {actionError && <p className="action-error" role="alert">{actionError}</p>}
+      {profileLoading && <p className="profile-loading">Abriendo ficha…</p>}
+      {memberDetail && <MemberProfile key={memberDetail.member.id} detail={memberDetail} onClose={() => setMemberDetail(null)} onSave={updateMember} onChangeState={changeMemberState} onAttendance={registerAttendance} />}
       {lastReceipt && <p className="receipt-success" role="status">Pago registrado correctamente. Comprobante interno: <strong>{lastReceipt}</strong></p>}
       {showMemberForm && <form className="member-form" onSubmit={createMember}><div><span>Nuevo socio</span><h2>Crear una cuenta</h2></div><label>Nombre completo<input value={name} onChange={(event) => setName(event.target.value)} minLength={3} required /></label><label>Plan<select value={plan} onChange={(event) => setPlan(event.target.value)}><option>Inicial</option><option>Completo</option><option>Personalizado</option></select></label><label>Primer vencimiento<input type="date" value={nextPayment} onChange={(event) => setNextPayment(event.target.value)} required /></label><div className="member-form__actions"><button type="submit" disabled={saving}>{saving ? 'Guardando…' : 'Crear socio'}</button><button type="button" onClick={() => setShowMemberForm(false)}>Cancelar</button></div></form>}
       {paymentMember && <form className="payment-form" onSubmit={registerPayment}><div><span>Registrar pago</span><h2>{paymentMember.name}</h2><small>{paymentMember.plan}</small></div><label>Importe<input type="number" min="1" step="1" value={paymentAmount} onChange={(event) => setPaymentAmount(event.target.value)} required /></label><label>Medio de pago<select value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}><option>Transferencia</option><option>Efectivo</option><option>Débito</option><option>Crédito</option></select></label><div className="payment-form__actions"><button type="submit" disabled={saving}>{saving ? 'Registrando…' : 'Confirmar pago'}</button><button type="button" onClick={() => setPaymentMember(null)}>Cancelar</button></div></form>}
-      <section className="data-grid" id="actividad"><div className="data-card"><div className="card-heading"><div><span>Socios</span><h2>Próximos vencimientos</h2></div><button type="button" onClick={() => setShowMemberForm(true)}>+ Nuevo socio</button></div><div className="table">{dashboard.members.map((member) => <div className="table__row table__row--member" key={member.id}><span><b>{member.name}</b><small>{member.plan}</small></span><span>{member.nextPayment}</span><em className={`badge badge--${member.paymentStatus.toLowerCase().replace(' ', '-')}`}>{member.paymentStatus}</em>{member.paymentStatus !== 'Al día' && <button className="row-action" type="button" onClick={() => openPayment(member)}>Registrar pago</button>}</div>)}</div></div><div className="data-card"><div className="card-heading"><div><span>Hoy</span><h2>Clases y cupos</h2></div></div><div className="table">{dashboard.classes.map((gymClass) => { const full = gymClass.booked >= gymClass.capacity; return <div className="table__row table__row--class" key={gymClass.id}><span><b>{gymClass.time}</b><small>{gymClass.name}</small></span><strong>{gymClass.booked} / {gymClass.capacity}</strong><button className="row-action" type="button" onClick={() => reserve(gymClass.id)} disabled={full}>{full ? 'Sin cupo' : '+ Reserva'}</button></div> })}</div></div></section>
+      <section className="data-grid" id="actividad"><MemberDirectory members={dashboard.members} onCreate={() => setShowMemberForm(true)} onOpen={openProfile} onPayment={openPayment} /><div className="data-card"><div className="card-heading"><div><span>Hoy</span><h2>Clases y cupos</h2></div></div><div className="table">{dashboard.classes.map((gymClass) => { const full = gymClass.booked >= gymClass.capacity; return <div className="table__row table__row--class" key={gymClass.id}><span><b>{gymClass.time}</b><small>{gymClass.name}</small></span><strong>{gymClass.booked} / {gymClass.capacity}</strong><button className="row-action" type="button" onClick={() => reserve(gymClass.id)} disabled={full}>{full ? 'Sin cupo' : '+ Reserva'}</button></div> })}</div></div></section>
       <section className="data-card payment-history"><div className="card-heading"><div><span>Pagos</span><h2>Historial reciente</h2></div><small>Últimos {dashboard.recentPayments.length} movimientos</small></div>{dashboard.recentPayments.length === 0 ? <p className="empty-history">Todavía no hay pagos registrados.</p> : <div className="payment-table"><div className="payment-table__head"><span>Socio</span><span>Fecha</span><span>Medio</span><span>Registrado por</span><span>Comprobante</span><span>Importe</span></div>{dashboard.recentPayments.map((payment) => <div className="payment-table__row" key={payment.id}><span><b>{payment.memberName}</b><small>Próximo: {payment.nextPayment}</small></span><span>{new Date(payment.paidAt).toLocaleDateString('es-AR')}</span><span>{payment.method}</span><span>{payment.registeredBy}</span><code>{payment.receiptNumber}</code><strong>{money.format(payment.amount)}</strong></div>)}</div>}</section>
     </>
   )

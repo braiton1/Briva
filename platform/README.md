@@ -31,6 +31,20 @@ http://127.0.0.1:5190
 - Contraseña: `RecepcionDemo2026!`
 - Puede ver socios, clases y pagos. No recibe estadísticas financieras.
 
+## Gestión de socios
+
+Cada socio tiene una ficha propia desde la que el personal autorizado puede:
+
+- consultar su plan, estado y próximo vencimiento;
+- editar sus datos de contacto y el plan contratado;
+- registrar asistencias;
+- suspender o reactivar la membresía;
+- revisar el historial de pagos y asistencias.
+
+Toda la información queda separada por negocio. Un usuario de otro comercio no puede consultar ni modificar los socios de NÚCLEO.
+
+El directorio, los filtros, la ficha y los tipos de datos están agrupados en `src/modules/members`. La aplicación principal se conecta al módulo mediante funciones, por lo que puede reutilizarse o retirarse sin reconstruir el resto del panel.
+
 ### Dueño de Moto Central
 
 - Usuario: `owner@motocentral.demo`
