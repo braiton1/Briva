@@ -15,6 +15,16 @@ const demos = [
 
 for (const demo of demos) {
   const demoDirectory = resolve(frontendDirectory, demo.source)
+
+  const install = spawnSync(npmCommand, ['ci', '--include=dev'], {
+    cwd: demoDirectory,
+    stdio: 'inherit',
+  })
+
+  if (install.status !== 0) {
+    process.exit(install.status ?? 1)
+  }
+
   const build = spawnSync(npmCommand, ['run', 'build'], {
     cwd: demoDirectory,
     stdio: 'inherit',
