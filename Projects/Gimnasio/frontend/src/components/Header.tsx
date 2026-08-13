@@ -26,7 +26,6 @@ function Header() {
           <a href="#planes" onClick={closeMenu}>Planes</a>
           <a href="#horarios" onClick={closeMenu}>Horarios</a>
           <a href="#ubicacion" onClick={closeMenu}>Ubicación</a>
-          <a href="#panel-demo" onClick={closeMenu}>Panel demo</a>
           <a className="header__mobile-cta" href="#contacto" onClick={closeMenu}>Solicitar clase de prueba</a>
         </nav>
 

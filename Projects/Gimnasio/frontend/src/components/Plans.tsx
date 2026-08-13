@@ -1,7 +1,7 @@
 const plans = [
-  { name: 'Inicial', detail: '8 clases por mes', price: '$49.000', features: ['Clases grupales', 'Planificación inicial', 'Comunidad NÚCLEO'] },
-  { name: 'Completo', detail: 'Pase libre', price: '$69.000', featured: true, features: ['Acceso ilimitado', 'Planificación mensual', 'Seguimiento de objetivos'] },
-  { name: 'Personalizado', detail: '4 clases + 1 sesión personal', price: '$79.000', features: ['Clases grupales', 'Sesión individual', 'Planificación personalizada'] },
+  { name: 'Inicial', detail: '8 clases por mes', price: '$35.000', features: ['Clases grupales', 'Planificación inicial', 'Comunidad NÚCLEO'] },
+  { name: 'Completo', detail: 'Pase libre', price: '$42.000', featured: true, features: ['Acceso ilimitado', 'Planificación mensual', 'Seguimiento de objetivos'] },
+  { name: 'Personalizado', detail: '8 clases + 1 sesión personal', price: '$55.000', features: ['Clases grupales', 'Sesión individual', 'Planificación personalizada'] },
 ]
 
 function Plans() {

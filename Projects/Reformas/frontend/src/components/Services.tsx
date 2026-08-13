@@ -1,0 +1,2 @@
+function Services({items}:{items:string[][]}){return <section className="services shell" id="servicios"><div className="heading"><p className="eyebrow">Qué hacemos</p><h2>Reformas que resuelven,<br/>no que complican.</h2><p>Coordinamos cada etapa para que sepas qué se va a hacer, cuánto tiempo llevará y qué decisiones necesitás tomar.</p></div><div className="services__grid">{items.map(([title,text],index)=><article key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p><a href="#contacto">Consultar →</a></article>)}</div></section>}
+export default Services

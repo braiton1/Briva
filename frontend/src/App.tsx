@@ -2,12 +2,11 @@ import './App.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Benefits from './components/Benefits'
-import Process from './components/Process'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import Services from './components/Services'
-import BusinessSystem from './components/BusinessSystem'
 import Portfolio from './components/Portfolio'
+import ApprovalFirst from './components/ApprovalFirst'
+import Pricing from './components/Pricing'
 
 function App() {
   return (
@@ -16,11 +15,10 @@ function App() {
 
       <main>
         <Hero />
-        <Benefits />
-        <Services />
-        <BusinessSystem />
         <Portfolio />
-        <Process />
+        <Pricing />
+        <Benefits />
+        <ApprovalFirst />
         <Contact />
       </main>
       <Footer/>

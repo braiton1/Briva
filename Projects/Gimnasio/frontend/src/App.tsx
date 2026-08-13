@@ -2,7 +2,6 @@ import './App.css'
 import Benefits from './components/Benefits'
 import Classes from './components/Classes'
 import ContactCTA from './components/ContactCTA'
-import DashboardDemo from './components/DashboardDemo'
 import Facilities from './components/Facilities'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -26,7 +25,6 @@ function App() {
         <Facilities />
         <Location />
         <FAQ />
-        <DashboardDemo />
         <ContactCTA />
       </main>
 

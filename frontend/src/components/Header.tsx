@@ -25,15 +25,15 @@ function Header() {
         </button>
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
-          <a href="#servicios" onClick={closeMenu}>
-            Servicios
-          </a>
-
           <a href="#proyectos" onClick={closeMenu}>
-            Proyectos
+            Portfolio
           </a>
 
-          <a href="#proceso" onClick={closeMenu}>
+          <a href="#planes" onClick={closeMenu}>
+            Planes
+          </a>
+
+          <a href="#sin-anticipo" onClick={closeMenu}>
             Cómo trabajamos
           </a>
 

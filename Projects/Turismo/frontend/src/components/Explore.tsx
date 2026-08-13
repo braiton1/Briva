@@ -1,0 +1,2 @@
+function Explore({activities}:{activities:string[][]}){return <section className="explore shell" id="entorno"><div className="heading"><p className="eyebrow">Cerca de Casa Jarilla</p><h2>Salí a explorar.<br/>Volvé a descansar.</h2><p>Montaña, agua, termas y vino. Elegí cuánto querés hacer; también está bien quedarse mirando el paisaje.</p></div><div className="explore__list">{activities.map(([name,distance],index)=><div key={name}><span>0{index+1}</span><strong>{name}</strong><small>{distance}</small></div>)}</div></section>}
+export default Explore

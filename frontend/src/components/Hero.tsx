@@ -1,48 +1,35 @@
 function Hero() {
   return (
-    <section className="hero">
-      <div className="hero__content">
-        <span className="hero__eyebrow">
-          Tecnología para pequeños negocios
-        </span>
-
-        <h1>Tu negocio, conectado por dentro y por fuera.</h1>
-
-        <p>
-          Creamos la experiencia que ven tus clientes y las herramientas que tu
-          equipo necesita para trabajar mejor, sin tocar código.
-        </p>
-
-        <a className="hero__button" href="#contacto">
-          Solicitar presupuesto
-        </a>
-      </div>
-
-      <div className="hero__visual">
-  <div className="device">
-    <div className="laptop">
-      <div className="laptop__screen">
-        <div className="mini-site">
-          <span className="mini-site__logo">Briva</span>
-          <strong>Tu negocio, más cerca de sus clientes.</strong>
-          <span className="mini-site__button">Comenzar</span>
+    <section className="hero hero--text">
+      <div className="hero__content hero__content--wide">
+        <span className="hero__eyebrow">Diseño web para pequeños negocios</span>
+        <h1>Diseño web pensado para convertir visitas en consultas.</h1>
+        <div className="hero__bottom">
+          <p>
+            Creamos landing pages y catálogos claros, profesionales y adaptados a
+            celulares para pequeños negocios de Mendoza.
+          </p>
+          <div className="hero__actions">
+            <a className="hero__button" href="#proyectos">Ver proyectos</a>
+            <a className="hero__portfolio-link" href="#contacto">Contanos tu idea</a>
+          </div>
+        </div>
+        <ul className="hero__proof">
+          <li>5 demos para recorrer</li>
+          <li>Adaptado a celulares</li>
+          <li>WhatsApp integrado</li>
+          <li>Desde $80.000</li>
+        </ul>
+        <div className="hero__origin">
+          <span>Nuestro propósito</span>
+          <p>
+            Briva nace en Mendoza para ayudar a pequeños negocios a construir
+            una presencia digital profesional, sin procesos complicados ni
+            lenguaje técnico. Trabajamos con trato directo, decisiones claras y
+            acompañamiento durante todo el proyecto.
+          </p>
         </div>
       </div>
-
-      <div className="laptop__base" />
-    </div>
-
-    <div className="phone">
-      <div className="phone__speaker" />
-
-      <div className="mini-site mini-site--phone">
-        <span className="mini-site__logo">Briva</span>
-        <strong>Tu negocio, más cerca de sus clientes.</strong>
-        <span className="mini-site__button">Comenzar</span>
-      </div>
-    </div>
-  </div>
-</div>
     </section>
   )
 }

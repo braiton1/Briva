@@ -1,0 +1,3 @@
+import { useState } from 'react'
+function Header({ brand }: { brand: string }) { const [open, setOpen] = useState(false); return <header className="header"><div className="shell header__inner"><a className="brand" href="#inicio">{brand}<span>●</span></a><button className="menu" type="button" aria-label="Abrir menú" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? '×' : '☰'}</button><nav className={open ? 'nav nav--open' : 'nav'}><a href="#catalogo" onClick={() => setOpen(false)}>Carta</a><a href="#historia" onClick={() => setOpen(false)}>Nuestra cocina</a><a href="#visitanos" onClick={() => setOpen(false)}>Visitanos</a></nav><a className="header__order" href="#catalogo">Armar pedido</a></div></header> }
+export default Header

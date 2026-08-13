@@ -1,0 +1,2 @@
+function Hero({image}:{image:string}){return <section className="hero" id="inicio"><img src={image} alt="Casa Jarilla frente a la Cordillera de los Andes"/><div className="hero__shade"/><div className="hero__copy"><p className="eyebrow">Potrerillos · Mendoza</p><h1>Montaña,<br/>silencio<br/>y tiempo.</h1><p>Dos cabañas para vivir el paisaje sin apuro.</p><a className="button button--light" href="#reservar">Encontrá tus fechas</a></div><span className="hero__note">A 70 km de Ciudad de Mendoza</span></section>}
+export default Hero

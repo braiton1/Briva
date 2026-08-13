@@ -1,0 +1,2 @@
+function Footer({ brand }: { brand: string }) { return <footer className="footer"><div className="shell footer__top"><a className="brand brand--light" href="#inicio">{brand}<span>●</span></a><p>Café, pan y cosas ricas<br />hechas en Mendoza.</p><nav><a href="#catalogo">Carta</a><a href="#historia">Nuestra cocina</a><a href="#visitanos">Visitanos</a></nav></div><div className="shell footer__bottom"><span>© 2026 Miga</span><span>Demo de portfolio creada por Briva.</span></div></footer> }
+export default Footer

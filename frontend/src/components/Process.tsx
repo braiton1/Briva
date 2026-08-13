@@ -1,28 +1,28 @@
 const steps = [
   {
     number: '01',
-    title: 'Entender',
-    description: 'Conocemos tu negocio, tus clientes y cómo trabaja tu equipo.',
+    title: 'Primera conversación',
+    description: 'Conocemos tu negocio, qué ofrecés y qué acción querés que realicen tus clientes.',
   },
   {
     number: '02',
-    title: 'Priorizar',
-    description: 'Elegimos qué problema conviene resolver primero.',
+    title: 'Propuesta y alcance',
+    description: 'Acordamos secciones, contenido, tiempos, revisiones y presupuesto antes de comenzar.',
   },
   {
     number: '03',
-    title: 'Desarrollo',
-    description: 'Construimos una solución clara, fácil de usar y adaptable.',
+    title: 'Diseño y desarrollo',
+    description: 'Creamos la identidad y construimos una experiencia adaptada a todas las pantallas.',
   },
   {
     number: '04',
-    title: 'Implementación',
-    description: 'La ponemos en funcionamiento con tu información y procesos.',
+    title: 'Revisión y publicación',
+    description: 'Revisás el resultado, aplicamos los ajustes acordados y dejamos la página online.',
   },
   {
     number: '05',
-    title: 'Soporte',
-    description: 'Te acompañamos, medimos resultados y mejoramos la solución.',
+    title: 'Acompañamiento',
+    description: 'Seguimos disponibles para mantenimiento o nuevas mejoras según el servicio contratado.',
   },
 ]
 
@@ -33,8 +33,8 @@ function Process() {
         <span>Un proceso claro</span>
         <h2>¿Cómo trabajamos?</h2>
         <p>
-          Avanzamos paso a paso, con comunicación clara y decisiones que podés
-          entender.
+          Sin lenguaje técnico innecesario: sabés qué sucede en cada etapa y qué
+          necesitamos para avanzar.
         </p>
       </div>
 

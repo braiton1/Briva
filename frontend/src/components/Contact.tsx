@@ -3,13 +3,15 @@ import type { ChangeEvent, FormEvent } from 'react'
 
 const initialFormData = {
     name: '',
-    email: '',
+    business: '',
+    phone: '',
     message: '',
 }
 
 type FormErrors = {
     name?: string
-    email?: string
+    business?: string
+    phone?: string
     message?: string
 }
 
@@ -39,7 +41,7 @@ function Contact() {
         setSubmitError('')
     }
     const whatsappMessage = encodeURIComponent(
-        `Hola, soy ${formData.name}. Acabo de enviar una solicitud desde la web de Briva y me gustaría continuar por WhatsApp.`,
+        `Hola, soy ${formData.name}. Acabo de enviar una solicitud para mi negocio (${formData.business}) desde la web de Briva y me gustaría continuar por WhatsApp.`,
     )
 
     const whatsappUrl = `https://wa.me/5491141972952?text=${whatsappMessage}`
@@ -51,10 +53,13 @@ function Contact() {
             newErrors.name = 'Ingresá un nombre de al menos 3 caracteres.'
         }
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (formData.business.trim().length < 2) {
+            newErrors.business = 'Contanos qué tipo de negocio tenés.'
+        }
 
-        if (!emailPattern.test(formData.email)) {
-            newErrors.email = 'Ingresá un correo electrónico válido.'
+        const phoneDigits = formData.phone.replace(/\D/g, '')
+        if (phoneDigits.length < 8) {
+            newErrors.phone = 'Ingresá un número de WhatsApp válido.'
         }
 
         if (formData.message.trim().length < 20) {
@@ -106,12 +111,13 @@ function Contact() {
             <div className="contact__content">
                 <span>Hablemos de tu proyecto</span>
 
-        <h2>Construyamos una solución digital que represente y organice tu negocio.</h2>
+        <h2>Construyamos una página que represente bien tu negocio.</h2>
 
                 <p>
-          Contanos qué necesitás. Vamos a entender cómo funciona tu negocio y
-          proponerte una solución clara, útil y fácil de manejar.
+          Contanos qué ofrecés, a quién querés llegar y cuál es tu objetivo.
+          Te responderemos dentro de un día hábil con una primera orientación clara.
                 </p>
+                <a className="contact__direct-whatsapp" href="https://wa.me/5491141972952?text=Hola%20Briva%2C%20quiero%20consultar%20por%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noreferrer">Hablar directamente por WhatsApp</a>
             </div>
 
             <form className="contact__form" onSubmit={handleSubmit} noValidate>
@@ -135,20 +141,39 @@ function Contact() {
                 </label>
 
                 <label>
-                    Correo electrónico
+                    Tipo de negocio
                     <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        type="text"
+                        name="business"
+                        value={formData.business}
                         onChange={handleChange}
-                        placeholder="nombre@correo.com"
-                        aria-invalid={Boolean(errors.email)}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
+                        placeholder="Ejemplo: panadería, gimnasio o cabañas"
+                        aria-invalid={Boolean(errors.business)}
+                        aria-describedby={errors.business ? 'business-error' : undefined}
                     />
 
-                    {errors.email && (
-                        <span className="contact__error" id="email-error">
-                            {errors.email}
+                    {errors.business && (
+                        <span className="contact__error" id="business-error">
+                            {errors.business}
+                        </span>
+                    )}
+                </label>
+
+                <label>
+                    WhatsApp
+                    <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Tu número con código de área"
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? 'phone-error' : undefined}
+                    />
+
+                    {errors.phone && (
+                        <span className="contact__error" id="phone-error">
+                            {errors.phone}
                         </span>
                     )}
                 </label>

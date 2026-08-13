@@ -1,0 +1,2 @@
+function Footer({brand}:{brand:string}){return <footer className="footer"><div className="shell footer__top"><a className="brand brand--light" href="#inicio">{brand}<small>REFORMAS</small></a><p>Remodelaciones y ampliaciones<br/>en San Rafael, Mendoza.</p><nav><a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></nav></div><div className="shell footer__bottom"><span>© 2026 Andina Reformas</span><span>Demo de portfolio creada por Briva.</span></div></footer>}
+export default Footer

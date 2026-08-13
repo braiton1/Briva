@@ -1,5 +1,5 @@
-import heroImage from '../assets/lumina-hero-v1.png'
-import sofiaImage from '../assets/lumina-sofia-v1.png'
+import heroImage from '../assets/lumina-hero-web.jpg'
+import sofiaImage from '../assets/lumina-sofia-web.jpg'
 
 export type NavigationItem = { label: string; href: string }
 export type Service = { number: string; name: string; description: string; duration: string; price: string }
@@ -9,7 +9,7 @@ export type FAQItem = { question: string; answer: string }
 
 export const siteContent = {
   brand: 'Lúmina',
-  whatsappUrl: 'https://wa.me/5492610000000?text=Hola%20L%C3%BAmina%2C%20quisiera%20reservar%20un%20turno.',
+  whatsappUrl: 'https://wa.me/5491141972952?text=Hola%20Briva%2C%20vi%20la%20demo%20L%C3%BAmina%20y%20quiero%20una%20web%20para%20mi%20negocio%20como%20esta.',
   navigation: [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Sobre nosotras', href: '#nosotras' },

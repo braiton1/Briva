@@ -1,0 +1,2 @@
+function Footer({brand}:{brand:string}){return <footer className="footer"><div className="shell footer__top"><a className="brand brand--light" href="#inicio">{brand}</a><p>Dos cabañas para encontrarte<br/>con la montaña.</p><nav><a href="#cabanas">Cabañas</a><a href="#entorno">El entorno</a><a href="#reservar">Reservar</a></nav></div><div className="shell footer__bottom"><span>© 2026 Casa Jarilla</span><span>Demo de portfolio creada por Briva.</span></div></footer>}
+export default Footer
