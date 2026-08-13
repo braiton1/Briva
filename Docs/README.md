@@ -7,6 +7,7 @@ Para retomar rápidamente el proyecto, comenzar por `ESTADO-ACTUAL.md`.
 ## Organización
 
 - `Producto/`: alcance de versiones y prioridades.
+- `Comercial/`: oferta, condiciones, propuesta y relevamiento de clientes.
 - `Tickets/`: unidades concretas de trabajo y su estado.
 - `UX/`: decisiones sobre experiencia de usuario y diseño.
 - `Pruebas/`: estrategia, casos y resultados de validación.
@@ -17,6 +18,12 @@ Para retomar rápidamente el proyecto, comenzar por `ESTADO-ACTUAL.md`.
 - `Tecnico/ENTORNOS-Y-BASE-DE-DATOS.md`: ambientes y estrategia inicial de datos.
 - `Tecnico/PUBLICACION-DOMINIOS-Y-CORREO.md`: publicación, dominios, correo profesional y responsabilidades con clientes.
 - `ESTADO-ACTUAL.md`: punto de reanudación, decisiones vigentes y próxima acción.
+
+## Documentación comercial
+
+- `Comercial/POLITICA-LANDING-PROMOCIONAL.md`: alcance, precios y reglas internas.
+- `Comercial/PROPUESTA-LANDING-PROMOCIONAL.md`: base para presentar al cliente.
+- `Comercial/RELEVAMIENTO-INICIAL.md`: preguntas, materiales y registro correcto del dominio.
 
 ## Fuente de verdad
 
