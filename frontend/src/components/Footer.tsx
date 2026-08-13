@@ -16,6 +16,7 @@ function Footer() {
           <a href="#proyectos">Proyectos</a>
           <a href="#proceso">Cómo trabajamos</a>
           <a href="#contacto">Contacto</a>
+          <a href="mailto:contacto@briva.com.ar">contacto@briva.com.ar</a>
         </nav>
       </div>
 

@@ -117,7 +117,14 @@ function Contact() {
           Contanos qué ofrecés, a quién querés llegar y cuál es tu objetivo.
           Te responderemos dentro de un día hábil con una primera orientación clara.
                 </p>
-                <a className="contact__direct-whatsapp" href="https://wa.me/5491141972952?text=Hola%20Briva%2C%20quiero%20consultar%20por%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noreferrer">Hablar directamente por WhatsApp</a>
+                <div className="contact__direct-links">
+                    <a className="contact__direct-link" href="mailto:contacto@briva.com.ar">
+                        contacto@briva.com.ar
+                    </a>
+                    <a className="contact__direct-link" href="https://wa.me/5491141972952?text=Hola%20Briva%2C%20quiero%20consultar%20por%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noreferrer">
+                        Hablar directamente por WhatsApp
+                    </a>
+                </div>
             </div>
 
             <form className="contact__form" onSubmit={handleSubmit} noValidate>

@@ -838,8 +838,14 @@ section {
   line-height: 1.7;
 }
 
-.contact__direct-whatsapp {
+.contact__direct-links {
   margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.contact__direct-link {
   display: inline-flex;
   padding-bottom: 5px;
   color: #ffffff;
