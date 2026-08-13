@@ -2,6 +2,8 @@
 
 Este directorio conserva las decisiones del producto y permite continuar el trabajo sin depender de una conversación específica.
 
+Para retomar rápidamente el proyecto, comenzar por `ESTADO-ACTUAL.md`.
+
 ## Organización
 
 - `Producto/`: alcance de versiones y prioridades.
@@ -9,6 +11,12 @@ Este directorio conserva las decisiones del producto y permite continuar el trab
 - `UX/`: decisiones sobre experiencia de usuario y diseño.
 - `Pruebas/`: estrategia, casos y resultados de validación.
 - `Tecnico/`: arquitectura, entornos y base de datos.
+
+## Procedimientos técnicos
+
+- `Tecnico/ENTORNOS-Y-BASE-DE-DATOS.md`: ambientes y estrategia inicial de datos.
+- `Tecnico/PUBLICACION-DOMINIOS-Y-CORREO.md`: publicación, dominios, correo profesional y responsabilidades con clientes.
+- `ESTADO-ACTUAL.md`: punto de reanudación, decisiones vigentes y próxima acción.
 
 ## Fuente de verdad
 
