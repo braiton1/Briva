@@ -10,10 +10,12 @@ import Services from './components/Services'
 import Testimonials from './components/Testimonials'
 import { siteContent } from './data/siteContent'
 import './App.css'
+import BackToBriva from './components/BackToBriva'
 
 function App() {
   return (
     <>
+      <BackToBriva />
       <Header brand={siteContent.brand} navigation={siteContent.navigation} whatsappUrl={siteContent.whatsappUrl} />
       <main id="inicio">
         <Hero content={siteContent.hero} whatsappUrl={siteContent.whatsappUrl} />

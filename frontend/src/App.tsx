@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import Portfolio from './components/Portfolio'
 import ApprovalFirst from './components/ApprovalFirst'
 import Pricing from './components/Pricing'
+import Purpose from './components/Purpose'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <main>
         <Hero />
         <Portfolio />
+        <Purpose />
         <Pricing />
         <Benefits />
         <ApprovalFirst />

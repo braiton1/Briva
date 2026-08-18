@@ -62,7 +62,7 @@ function ApprovalFirst() {
       </div>
 
       <small className="approval-first__note">
-        Beneficio disponible para los primeros cinco proyectos seleccionados de Landing Esencial. La
+        Beneficio disponible para los primeros cinco proyectos seleccionados de Página Web Esencial. La
         demo privada no incluye dominio definitivo ni canales de contacto activos.
       </small>
     </section>

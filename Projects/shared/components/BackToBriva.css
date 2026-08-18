@@ -1,0 +1,49 @@
+.back-to-briva {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  min-height: 44px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #ffffff;
+  background: #111827;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 28%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.back-to-briva span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.back-to-briva:hover {
+  color: #ffffff;
+  background: #5f50ff;
+  box-shadow: 0 12px 34px rgb(79 70 229 / 32%);
+  transform: translateY(-2px);
+}
+
+.back-to-briva:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .back-to-briva {
+    left: 12px;
+    bottom: 12px;
+    min-height: 42px;
+    padding-inline: 14px;
+    font-size: 12px;
+  }
+}

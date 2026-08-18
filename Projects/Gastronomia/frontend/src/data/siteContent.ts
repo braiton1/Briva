@@ -7,7 +7,7 @@ export type Product = { id: number; name: string; category: Exclude<Category, 'T
 
 export const content = {
   brand: 'Miga',
-  phone: '5491141972952',
+  phone: '5492604559068',
   heroImage,
   products: [
     { id: 1, name: 'Medialuna de manteca', category: 'Panadería', description: 'Hojaldrada, brillante y recién salida del horno.', price: 2500, image: heroImage, imagePosition: '78% 68%', badge: 'La favorita' },

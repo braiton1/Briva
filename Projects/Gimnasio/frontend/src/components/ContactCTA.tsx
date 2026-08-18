@@ -1,4 +1,4 @@
-const brivaWhatsapp = 'https://wa.me/5491141972952?text=Hola%2C%20vi%20el%20proyecto%20conceptual%20N%C3%9ACLEO%20Training%20y%20quiero%20una%20web%20como%20esta.'
+const brivaWhatsapp = 'https://wa.me/5492604559068?text=Hola%2C%20vi%20el%20proyecto%20conceptual%20N%C3%9ACLEO%20Training%20y%20quiero%20una%20web%20como%20esta.'
 
 function ContactCTA() {
   return (

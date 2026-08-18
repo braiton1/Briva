@@ -10,10 +10,12 @@ import Hero from './components/Hero'
 import Location from './components/Location'
 import Plans from './components/Plans'
 import Schedule from './components/Schedule'
+import BackToBriva from './components/BackToBriva'
 
 function App() {
   return (
     <>
+      <BackToBriva />
       <Header />
 
       <main>

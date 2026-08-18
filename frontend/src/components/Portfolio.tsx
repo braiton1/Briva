@@ -14,8 +14,8 @@ function Portfolio() {
           <h2>Una identidad propia para cada negocio.</h2>
         </div>
         <p>
-          No cambiamos solamente colores y fotografías. Cada experiencia responde
-          al rubro, al público y a la acción que el negocio necesita generar.
+          Adaptamos cada diseño a la identidad, el público y los objetivos de cada
+          negocio para crear una experiencia realmente propia.
         </p>
       </div>
 
@@ -24,12 +24,12 @@ function Portfolio() {
           <div className="case__copy">
             <span>01 · Entrenamiento y bienestar</span>
             <h3>NÚCLEO</h3>
-            <p>Una landing enérgica y cercana para explicar clases, comparar planes, consultar horarios y convertir el interés en una conversación.</p>
+            <p>Una página web enérgica y cercana para explicar clases, comparar planes, consultar horarios y convertir el interés en una conversación.</p>
             <div className="case__features"><small>Clases</small><small>Planes</small><small>Horarios</small><small>Ubicación</small></div>
             <a href="/demos/nucleo/">Explorar demo completa <b>→</b></a>
           </div>
           <a className="case__screen" href="/demos/nucleo/" aria-label="Abrir la demo completa de NÚCLEO">
-            <img src={nucleoSite} alt="Entrenamiento funcional presentado en la landing NÚCLEO" />
+            <img src={nucleoSite} alt="Entrenamiento funcional presentado en la página web de NÚCLEO" />
             <span className="case__screen-cta">Ver sitio completo ↗</span>
           </a>
         </article>
@@ -43,14 +43,14 @@ function Portfolio() {
             <a href="/demos/lumina/">Explorar demo completa <b>→</b></a>
           </div>
           <a className="case__screen" href="/demos/lumina/" aria-label="Abrir la demo completa de Lúmina">
-            <img src={luminaSite} alt="Portada real de la landing Lúmina Estética" />
+            <img src={luminaSite} alt="Portada real de la página web de Lúmina Estética" />
             <span className="case__screen-cta">Ver sitio completo ↗</span>
           </a>
         </article>
 
         <article className="case case--miga">
           <a className="case__screen" href="/demos/miga/" aria-label="Abrir la demo completa de Miga">
-            <img src={migaSite} alt="Portada real de la landing Miga Panadería" />
+            <img src={migaSite} alt="Portada real de la página web de Miga Panadería" />
             <span className="case__screen-cta">Ver sitio completo ↗</span>
           </a>
           <div className="case__copy">
@@ -64,7 +64,7 @@ function Portfolio() {
 
         <article className="case case--jarilla">
           <a className="case__screen" href="/demos/casa-jarilla/" aria-label="Abrir la demo completa de Casa Jarilla">
-            <img src={jarillaSite} alt="Portada real de la landing turística Casa Jarilla" />
+            <img src={jarillaSite} alt="Portada real de la página web turística de Casa Jarilla" />
             <span className="case__screen-cta">Ver sitio completo ↗</span>
           </a>
           <div className="case__copy">
@@ -84,7 +84,7 @@ function Portfolio() {
             <a href="/demos/andina-reformas/">Explorar demo completa <b>→</b></a>
           </div>
           <a className="case__screen" href="/demos/andina-reformas/" aria-label="Abrir la demo completa de Andina Reformas">
-            <img src={andinaSite} alt="Portada real de la landing Andina Reformas" />
+            <img src={andinaSite} alt="Portada real de la página web de Andina Reformas" />
             <span className="case__screen-cta">Ver sitio completo ↗</span>
           </a>
         </article>

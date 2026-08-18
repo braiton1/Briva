@@ -3,7 +3,7 @@ import './Pricing.css'
 const plans = [
   {
     eyebrow: 'Para presentar servicios',
-    name: 'Landing Esencial',
+    name: 'Página Web Esencial',
     price: '$80.000',
     items: ['Hasta 5 secciones', 'Diseño adaptado a celulares', 'WhatsApp o formulario', '2 rondas de correcciones', 'Publicación inicial'],
   },

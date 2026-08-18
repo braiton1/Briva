@@ -9,7 +9,7 @@ export type FAQItem = { question: string; answer: string }
 
 export const siteContent = {
   brand: 'Lúmina',
-  whatsappUrl: 'https://wa.me/5491141972952?text=Hola%20Briva%2C%20vi%20la%20demo%20L%C3%BAmina%20y%20quiero%20una%20web%20para%20mi%20negocio%20como%20esta.',
+  whatsappUrl: 'https://wa.me/5492604559068?text=Hola%20Briva%2C%20vi%20la%20demo%20L%C3%BAmina%20y%20quiero%20una%20web%20para%20mi%20negocio%20como%20esta.',
   navigation: [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Sobre nosotras', href: '#nosotras' },

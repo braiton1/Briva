@@ -1,6 +1,6 @@
 const services = [
   {
-    title: 'Sitios y landing pages',
+    title: 'Páginas web',
     description:
       'Experiencias públicas para presentar tu propuesta y generar oportunidades.',
   },

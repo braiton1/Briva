@@ -44,7 +44,7 @@ function Contact() {
         `Hola, soy ${formData.name}. Acabo de enviar una solicitud para mi negocio (${formData.business}) desde la web de Briva y me gustaría continuar por WhatsApp.`,
     )
 
-    const whatsappUrl = `https://wa.me/5491141972952?text=${whatsappMessage}`
+    const whatsappUrl = `https://wa.me/5492604559068?text=${whatsappMessage}`
 
     function validateForm() {
         const newErrors: FormErrors = {}
@@ -121,7 +121,7 @@ function Contact() {
                     <a className="contact__direct-link" href="mailto:contacto@briva.com.ar">
                         contacto@briva.com.ar
                     </a>
-                    <a className="contact__direct-link" href="https://wa.me/5491141972952?text=Hola%20Briva%2C%20quiero%20consultar%20por%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noreferrer">
+                    <a className="contact__direct-link" href="https://wa.me/5492604559068?text=Hola%20Briva%2C%20quiero%20consultar%20por%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noreferrer">
                         Hablar directamente por WhatsApp
                     </a>
                 </div>

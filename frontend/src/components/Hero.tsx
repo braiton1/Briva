@@ -6,7 +6,7 @@ function Hero() {
         <h1>Diseño web pensado para convertir visitas en consultas.</h1>
         <div className="hero__bottom">
           <p>
-            Creamos landing pages y catálogos claros, profesionales y adaptados a
+            Creamos páginas web y catálogos claros, profesionales y adaptados a
             celulares para pequeños negocios de Mendoza.
           </p>
           <div className="hero__actions">
@@ -20,15 +20,6 @@ function Hero() {
           <li>WhatsApp integrado</li>
           <li>Desde $80.000</li>
         </ul>
-        <div className="hero__origin">
-          <span>Nuestro propósito</span>
-          <p>
-            Briva nace en Mendoza para ayudar a pequeños negocios a construir
-            una presencia digital profesional, sin procesos complicados ni
-            lenguaje técnico. Trabajamos con trato directo, decisiones claras y
-            acompañamiento durante todo el proyecto.
-          </p>
-        </div>
       </div>
     </section>
   )
